@@ -33,18 +33,23 @@ Partial Class FrmMain
         LblRatio = New ToolStripStatusLabel()
         LblPictureSize = New ToolStripStatusLabel()
         PnlTop = New Panel()
+        LblFont = New Label()
+        BtnFont = New Button()
         PbxColor = New PictureBox()
         BtnColor = New Button()
         Panel1 = New Panel()
-        RadioButton3 = New RadioButton()
-        RadioButton2 = New RadioButton()
-        RadioButton1 = New RadioButton()
+        BtnText = New RadioButton()
+        BtnEraser = New RadioButton()
+        BtnMakerPen = New RadioButton()
+        BtnPencil = New RadioButton()
         PnlBottom = New Panel()
         PnlMain = New Panel()
         PbxMain = New PictureBox()
         DlgOpenFile = New OpenFileDialog()
         DlgSaveFile = New SaveFileDialog()
         DlgColor = New ColorDialog()
+        DlgFont = New FontDialog()
+        TxtText = New TextBox()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
@@ -120,6 +125,9 @@ Partial Class FrmMain
         ' 
         ' PnlTop
         ' 
+        PnlTop.Controls.Add(TxtText)
+        PnlTop.Controls.Add(LblFont)
+        PnlTop.Controls.Add(BtnFont)
         PnlTop.Controls.Add(PbxColor)
         PnlTop.Controls.Add(BtnColor)
         PnlTop.Controls.Add(Panel1)
@@ -128,6 +136,24 @@ Partial Class FrmMain
         PnlTop.Name = "PnlTop"
         PnlTop.Size = New Size(800, 48)
         PnlTop.TabIndex = 2
+        ' 
+        ' LblFont
+        ' 
+        LblFont.BorderStyle = BorderStyle.Fixed3D
+        LblFont.Location = New Point(103, 1)
+        LblFont.Name = "LblFont"
+        LblFont.Size = New Size(105, 19)
+        LblFont.TabIndex = 5
+        LblFont.Text = "FontName"
+        ' 
+        ' BtnFont
+        ' 
+        BtnFont.Location = New Point(213, 0)
+        BtnFont.Name = "BtnFont"
+        BtnFont.Size = New Size(48, 48)
+        BtnFont.TabIndex = 4
+        BtnFont.Text = "フォント"
+        BtnFont.UseVisualStyleBackColor = True
         ' 
         ' PbxColor
         ' 
@@ -150,46 +176,58 @@ Partial Class FrmMain
         ' 
         ' Panel1
         ' 
-        Panel1.Controls.Add(RadioButton3)
-        Panel1.Controls.Add(RadioButton2)
-        Panel1.Controls.Add(RadioButton1)
-        Panel1.Location = New Point(151, 0)
+        Panel1.Controls.Add(BtnText)
+        Panel1.Controls.Add(BtnEraser)
+        Panel1.Controls.Add(BtnMakerPen)
+        Panel1.Controls.Add(BtnPencil)
+        Panel1.Location = New Point(281, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(163, 48)
+        Panel1.Size = New Size(219, 48)
         Panel1.TabIndex = 0
         ' 
-        ' RadioButton3
+        ' BtnText
         ' 
-        RadioButton3.Appearance = Appearance.Button
-        RadioButton3.Location = New Point(103, 1)
-        RadioButton3.Name = "RadioButton3"
-        RadioButton3.Size = New Size(48, 48)
-        RadioButton3.TabIndex = 2
-        RadioButton3.TabStop = True
-        RadioButton3.Text = "消しゴム"
-        RadioButton3.UseVisualStyleBackColor = True
+        BtnText.Appearance = Appearance.Button
+        BtnText.Location = New Point(148, 0)
+        BtnText.Name = "BtnText"
+        BtnText.Size = New Size(48, 48)
+        BtnText.TabIndex = 3
+        BtnText.TabStop = True
+        BtnText.Text = "文字列"
+        BtnText.UseVisualStyleBackColor = True
         ' 
-        ' RadioButton2
+        ' BtnEraser
         ' 
-        RadioButton2.Appearance = Appearance.Button
-        RadioButton2.Location = New Point(52, 0)
-        RadioButton2.Name = "RadioButton2"
-        RadioButton2.Size = New Size(48, 48)
-        RadioButton2.TabIndex = 1
-        RadioButton2.TabStop = True
-        RadioButton2.Text = "マーカー"
-        RadioButton2.UseVisualStyleBackColor = True
+        BtnEraser.Appearance = Appearance.Button
+        BtnEraser.Location = New Point(99, 0)
+        BtnEraser.Name = "BtnEraser"
+        BtnEraser.Size = New Size(48, 48)
+        BtnEraser.TabIndex = 2
+        BtnEraser.TabStop = True
+        BtnEraser.Text = "消しゴム"
+        BtnEraser.UseVisualStyleBackColor = True
         ' 
-        ' RadioButton1
+        ' BtnMakerPen
         ' 
-        RadioButton1.Appearance = Appearance.Button
-        RadioButton1.Location = New Point(1, 0)
-        RadioButton1.Name = "RadioButton1"
-        RadioButton1.Size = New Size(48, 48)
-        RadioButton1.TabIndex = 0
-        RadioButton1.TabStop = True
-        RadioButton1.Text = "鉛筆"
-        RadioButton1.UseVisualStyleBackColor = True
+        BtnMakerPen.Appearance = Appearance.Button
+        BtnMakerPen.Location = New Point(50, 0)
+        BtnMakerPen.Name = "BtnMakerPen"
+        BtnMakerPen.Size = New Size(48, 48)
+        BtnMakerPen.TabIndex = 1
+        BtnMakerPen.TabStop = True
+        BtnMakerPen.Text = "マーカー"
+        BtnMakerPen.UseVisualStyleBackColor = True
+        ' 
+        ' BtnPencil
+        ' 
+        BtnPencil.Appearance = Appearance.Button
+        BtnPencil.Location = New Point(1, 0)
+        BtnPencil.Name = "BtnPencil"
+        BtnPencil.Size = New Size(48, 48)
+        BtnPencil.TabIndex = 0
+        BtnPencil.TabStop = True
+        BtnPencil.Text = "鉛筆"
+        BtnPencil.UseVisualStyleBackColor = True
         ' 
         ' PnlBottom
         ' 
@@ -228,6 +266,18 @@ Partial Class FrmMain
         DlgSaveFile.Filter = "PNG|*.png|BMP|*.bmp|JPEG|*.jpg;*.jpeg"
         DlgSaveFile.Title = "名前を付けて保存"
         ' 
+        ' DlgFont
+        ' 
+        DlgFont.Font = New Font("ＭＳ ゴシック", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
+        ' 
+        ' TxtText
+        ' 
+        TxtText.Location = New Point(103, 23)
+        TxtText.Name = "TxtText"
+        TxtText.Size = New Size(105, 23)
+        TxtText.TabIndex = 6
+        TxtText.Text = "Hello World!"
+        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -247,6 +297,7 @@ Partial Class FrmMain
         StatusStrip1.ResumeLayout(False)
         StatusStrip1.PerformLayout()
         PnlTop.ResumeLayout(False)
+        PnlTop.PerformLayout()
         CType(PbxColor, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         PnlMain.ResumeLayout(False)
@@ -272,11 +323,16 @@ Partial Class FrmMain
     Friend WithEvents DlgOpenFile As OpenFileDialog
     Friend WithEvents DlgSaveFile As SaveFileDialog
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents RadioButton3 As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents BtnPencil As RadioButton
+    Friend WithEvents BtnEraser As RadioButton
+    Friend WithEvents BtnMakerPen As RadioButton
     Friend WithEvents BtnColor As Button
     Friend WithEvents PbxColor As PictureBox
     Friend WithEvents DlgColor As ColorDialog
+    Friend WithEvents BtnText As RadioButton
+    Friend WithEvents DlgFont As FontDialog
+    Friend WithEvents LblFont As Label
+    Friend WithEvents BtnFont As Button
+    Friend WithEvents TxtText As TextBox
 
 End Class

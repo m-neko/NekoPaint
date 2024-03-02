@@ -2,10 +2,11 @@
 
 Public Class FrmMain
 
-    Private ratio As Double = 1.0#          ' 画像の拡大率
-    Private bmp As Bitmap = Nothing         ' 画像データ
-    Private filePath As String = ""         ' 開いているファイルのパス
-    Private fcolor As Color = Color.Black   ' 前景色
+    Private ratio As Double = 1.0#                      ' 画像の拡大率
+    Private bmp As Bitmap = Nothing                     ' 画像データ
+    Private filePath As String = ""                     ' 開いているファイルのパス
+    Private fcolor As Color = Color.Black                     ' 前景色
+    Private textFont As Font = New Font("ＭＳ ゴシック", 18)  ' フォント
 
     Private Sub MenuExit_Click(sender As Object, e As EventArgs) Handles MenuExit.Click
         Application.Exit()
@@ -16,6 +17,7 @@ Public Class FrmMain
         Me.Text = "NekoPaint"
         LblRatio.Text = "倍率: "
         LblPictureSize.Text = "元の画像サイズ: "
+        LblFont.Text = textFont.Name & " : " & CInt(textFont.Size) & "pt"
         PbxColor.BackColor = fcolor
 
         If Not bmp Is Nothing Then
@@ -78,6 +80,21 @@ Public Class FrmMain
     '    MsgBox(temp.BackColor.ToString)
     'End Sub
 
+    Private Sub PbxMain_Click(sender As Object, e As EventArgs) Handles PbxMain.Click
+
+        If BtnText.Checked Then
+            Dim g As Graphics = Graphics.FromImage(bmp)
+            Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
+            Dim objBrush As SolidBrush = New SolidBrush(fcolor)
+
+            g.DrawString(TxtText.Text, textFont, objBrush, pos)
+            objBrush.Dispose()
+            g.Dispose()
+            PbxMain.Image = bmp
+        End If
+
+    End Sub
+
     Private Sub PbxMain_MouseMove(sender As Object, e As MouseEventArgs) Handles PbxMain.MouseMove
         If e.Button = MouseButtons.Left Then
             Dim g As Graphics = Graphics.FromImage(bmp)
@@ -85,10 +102,17 @@ Public Class FrmMain
             Dim objBrush As SolidBrush = New SolidBrush(fcolor)
             'g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
             'g.DrawLine(objPen, pos, pos)
-            g.FillEllipse(objBrush, New Rectangle(pos.X, pos.Y, 2, 2))
+
+            If BtnPencil.Checked Then
+                g.FillEllipse(objBrush, New Rectangle(pos.X, pos.Y, 2, 2))
+            ElseIf BtnMakerPen.Checked Then
+                g.FillEllipse(objBrush, New Rectangle(pos.X, pos.Y, 8, 8))
+            ElseIf BtnEraser.Checked Then
+                g.FillRectangle(Brushes.White, New Rectangle(pos.X, pos.Y, 12, 12))
+            End If
+
             objBrush.Dispose()
             g.Dispose()
-
             PbxMain.Image = bmp
         End If
     End Sub
@@ -96,6 +120,13 @@ Public Class FrmMain
     Private Sub BtnColor_Click(sender As Object, e As EventArgs) Handles BtnColor.Click
         If DlgColor.ShowDialog() = DialogResult.OK Then
             fcolor = DlgColor.Color
+            UpdateFormData()
+        End If
+    End Sub
+
+    Private Sub BtnFont_Click(sender As Object, e As EventArgs) Handles BtnFont.Click
+        If DlgFont.ShowDialog = DialogResult.OK Then
+            textFont = DlgFont.Font
             UpdateFormData()
         End If
     End Sub
