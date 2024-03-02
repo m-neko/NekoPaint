@@ -28,7 +28,11 @@ Partial Class FrmMain
         MenuOpen = New ToolStripMenuItem()
         MenuSaveAs = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripSeparator()
+        MenuPrint = New ToolStripMenuItem()
+        ToolStripMenuItem2 = New ToolStripSeparator()
         MenuExit = New ToolStripMenuItem()
+        MenuHelp = New ToolStripMenuItem()
+        MenuVersion = New ToolStripMenuItem()
         StatusStrip1 = New StatusStrip()
         LblRatio = New ToolStripStatusLabel()
         LblPictureSize = New ToolStripStatusLabel()
@@ -50,8 +54,8 @@ Partial Class FrmMain
         DlgSaveFile = New SaveFileDialog()
         DlgColor = New ColorDialog()
         DlgFont = New FontDialog()
-        MenuHelp = New ToolStripMenuItem()
-        MenuVersion = New ToolStripMenuItem()
+        DlgPrint = New PrintDialog()
+        pdcImage = New Printing.PrintDocument()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
@@ -72,7 +76,7 @@ Partial Class FrmMain
         ' 
         ' MenuFile
         ' 
-        MenuFile.DropDownItems.AddRange(New ToolStripItem() {MenuOpen, MenuSaveAs, ToolStripMenuItem1, MenuExit})
+        MenuFile.DropDownItems.AddRange(New ToolStripItem() {MenuOpen, MenuSaveAs, ToolStripMenuItem1, MenuPrint, ToolStripMenuItem2, MenuExit})
         MenuFile.Name = "MenuFile"
         MenuFile.Size = New Size(67, 20)
         MenuFile.Text = "ファイル(&F)"
@@ -80,25 +84,49 @@ Partial Class FrmMain
         ' MenuOpen
         ' 
         MenuOpen.Name = "MenuOpen"
-        MenuOpen.Size = New Size(180, 22)
+        MenuOpen.Size = New Size(177, 22)
         MenuOpen.Text = "ファイルを開く(&O)"
         ' 
         ' MenuSaveAs
         ' 
         MenuSaveAs.Name = "MenuSaveAs"
-        MenuSaveAs.Size = New Size(180, 22)
+        MenuSaveAs.Size = New Size(177, 22)
         MenuSaveAs.Text = "名前を付けて保存(&A)"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(177, 6)
+        ToolStripMenuItem1.Size = New Size(174, 6)
+        ' 
+        ' MenuPrint
+        ' 
+        MenuPrint.Name = "MenuPrint"
+        MenuPrint.Size = New Size(177, 22)
+        MenuPrint.Text = "印刷(&P)"
+        ' 
+        ' ToolStripMenuItem2
+        ' 
+        ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        ToolStripMenuItem2.Size = New Size(174, 6)
         ' 
         ' MenuExit
         ' 
         MenuExit.Name = "MenuExit"
-        MenuExit.Size = New Size(180, 22)
+        MenuExit.Size = New Size(177, 22)
         MenuExit.Text = "終了(&X)"
+        ' 
+        ' MenuHelp
+        ' 
+        MenuHelp.DropDownItems.AddRange(New ToolStripItem() {MenuVersion})
+        MenuHelp.Name = "MenuHelp"
+        MenuHelp.Size = New Size(65, 20)
+        MenuHelp.Text = "ヘルプ(&H)"
+        ' 
+        ' MenuVersion
+        ' 
+        MenuVersion.Name = "MenuVersion"
+        MenuVersion.Size = New Size(158, 22)
+        MenuVersion.Text = "バージョン情報(&A)"
         ' 
         ' StatusStrip1
         ' 
@@ -280,18 +308,13 @@ Partial Class FrmMain
         ' 
         DlgFont.Font = New Font("ＭＳ ゴシック", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
         ' 
-        ' MenuHelp
+        ' DlgPrint
         ' 
-        MenuHelp.DropDownItems.AddRange(New ToolStripItem() {MenuVersion})
-        MenuHelp.Name = "MenuHelp"
-        MenuHelp.Size = New Size(65, 20)
-        MenuHelp.Text = "ヘルプ(&H)"
+        DlgPrint.UseEXDialog = True
         ' 
-        ' MenuVersion
+        ' pdcImage
         ' 
-        MenuVersion.Name = "MenuVersion"
-        MenuVersion.Size = New Size(180, 22)
-        MenuVersion.Text = "バージョン情報(&A)"
+        pdcImage.DocumentName = "NekoPaintDocument"
         ' 
         ' FrmMain
         ' 
@@ -351,5 +374,9 @@ Partial Class FrmMain
     Friend WithEvents TxtText As TextBox
     Friend WithEvents MenuHelp As ToolStripMenuItem
     Friend WithEvents MenuVersion As ToolStripMenuItem
+    Friend WithEvents MenuPrint As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents DlgPrint As PrintDialog
+    Friend WithEvents pdcImage As Printing.PrintDocument
 
 End Class

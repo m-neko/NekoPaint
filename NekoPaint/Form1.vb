@@ -25,9 +25,11 @@ Public Class FrmMain
             LblRatio.Text &= ratio.ToString("0.00")
             LblPictureSize.Text &= bmp.Width & " × " & bmp.Height
             MenuSaveAs.Enabled = True
+            MenuPrint.Enabled = True
         Else
             PbxMain.Size = New Size(0, 0)
             MenuSaveAs.Enabled = False
+            MenuPrint.Enabled = False
         End If
 
     End Sub
@@ -74,11 +76,6 @@ Public Class FrmMain
             UpdateFormData()
         End If
     End Sub
-
-    'Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
-    '    Dim temp As RadioButton = CType(sender, RadioButton)
-    '    MsgBox(temp.BackColor.ToString)
-    'End Sub
 
     Private Sub PbxMain_Click(sender As Object, e As EventArgs) Handles PbxMain.Click
 
@@ -134,4 +131,27 @@ Public Class FrmMain
     Private Sub MenuVersion_Click(sender As Object, e As EventArgs) Handles MenuVersion.Click
         AboutBox.ShowDialog()
     End Sub
+
+    Private Sub MenuPrint_Click(sender As Object, e As EventArgs) Handles MenuPrint.Click
+        Dim doc As New System.Drawing.Printing.PrintDocument
+        AddHandler doc.PrintPage, AddressOf pdcImage_PrintPage
+        DlgPrint.Document = doc
+
+        If DlgPrint.ShowDialog() = DialogResult.OK Then
+            doc.Print()
+        End If
+    End Sub
+
+    Private Sub pdcImage_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles pdcImage.PrintPage
+        Dim recDoc As Rectangle = e.MarginBounds
+        If e.MarginBounds.Width > e.MarginBounds.Height Then
+            recDoc.Width *= CDbl(PbxMain.Height / PbxMain.Width)
+        Else
+            recDoc.Height *= CDbl(PbxMain.Height / PbxMain.Width)
+        End If
+
+        e.Graphics.DrawImage(PbxMain.Image, recDoc)
+        e.HasMorePages = False
+    End Sub
+
 End Class
