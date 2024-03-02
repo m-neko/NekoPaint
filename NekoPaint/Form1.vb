@@ -2,9 +2,10 @@
 
 Public Class FrmMain
 
-    Private ratio As Double = 1.0#      ' 画像の拡大率
-    Private bmp As Bitmap = Nothing     ' 画像データ
-    Private filePath As String = ""     ' 開いているファイルのパス
+    Private ratio As Double = 1.0#          ' 画像の拡大率
+    Private bmp As Bitmap = Nothing         ' 画像データ
+    Private filePath As String = ""         ' 開いているファイルのパス
+    Private fcolor As Color = Color.Black   ' 前景色
 
     Private Sub MenuExit_Click(sender As Object, e As EventArgs) Handles MenuExit.Click
         Application.Exit()
@@ -12,9 +13,10 @@ Public Class FrmMain
 
     '画面更新処理
     Private Sub UpdateFormData()
+        Me.Text = "NekoPaint"
         LblRatio.Text = "倍率: "
         LblPictureSize.Text = "元の画像サイズ: "
-        Me.Text = "NekoPaint"
+        PbxColor.BackColor = fcolor
 
         If Not bmp Is Nothing Then
             Me.Text &= " - " & filePath
@@ -71,58 +73,31 @@ Public Class FrmMain
         End If
     End Sub
 
-    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
-        Dim temp As RadioButton = CType(sender, RadioButton)
-        MsgBox(temp.BackColor.ToString)
-    End Sub
-
-    Private Sub PbxMain_Click(sender As Object, e As EventArgs) Handles PbxMain.Click
-        'Dim g As Graphics = Graphics.FromImage(bmp)
-        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
-        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
-        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
-        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
-        'objPen.Dispose()
-        'g.Dispose()
-
-        'PbxMain.Image = bmp
-    End Sub
-
-    Private Sub PbxMain_DragOver(sender As Object, e As DragEventArgs) Handles PbxMain.DragOver
-        'Dim g As Graphics = Graphics.FromImage(bmp)
-        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
-        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
-        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
-        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
-        'objPen.Dispose()
-        'g.Dispose()
-
-        'PbxMain.Image = bmp
-    End Sub
-
-    Private Sub PbxMain_MouseDown(sender As Object, e As MouseEventArgs) Handles PbxMain.MouseDown
-        'Dim g As Graphics = Graphics.FromImage(bmp)
-        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
-        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
-        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
-        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
-        'objPen.Dispose()
-        'g.Dispose()
-
-        'PbxMain.Image = bmp
-    End Sub
+    'Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
+    '    Dim temp As RadioButton = CType(sender, RadioButton)
+    '    MsgBox(temp.BackColor.ToString)
+    'End Sub
 
     Private Sub PbxMain_MouseMove(sender As Object, e As MouseEventArgs) Handles PbxMain.MouseMove
         If e.Button = MouseButtons.Left Then
             Dim g As Graphics = Graphics.FromImage(bmp)
             Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
-            Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255))
+            Dim objBrush As SolidBrush = New SolidBrush(fcolor)
             'g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
-            g.DrawLine(objPen, pos, pos)
-            objPen.Dispose()
+            'g.DrawLine(objPen, pos, pos)
+            g.FillEllipse(objBrush, New Rectangle(pos.X, pos.Y, 2, 2))
+            objBrush.Dispose()
             g.Dispose()
 
             PbxMain.Image = bmp
         End If
     End Sub
+
+    Private Sub BtnColor_Click(sender As Object, e As EventArgs) Handles BtnColor.Click
+        If DlgColor.ShowDialog() = DialogResult.OK Then
+            fcolor = DlgColor.Color
+            UpdateFormData()
+        End If
+    End Sub
+
 End Class

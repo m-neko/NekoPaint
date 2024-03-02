@@ -33,10 +33,8 @@ Partial Class FrmMain
         LblRatio = New ToolStripStatusLabel()
         LblPictureSize = New ToolStripStatusLabel()
         PnlTop = New Panel()
-        Panel2 = New Panel()
-        RadioButton4 = New RadioButton()
-        RadioButton5 = New RadioButton()
-        RadioButton6 = New RadioButton()
+        PbxColor = New PictureBox()
+        BtnColor = New Button()
         Panel1 = New Panel()
         RadioButton3 = New RadioButton()
         RadioButton2 = New RadioButton()
@@ -46,10 +44,11 @@ Partial Class FrmMain
         PbxMain = New PictureBox()
         DlgOpenFile = New OpenFileDialog()
         DlgSaveFile = New SaveFileDialog()
+        DlgColor = New ColorDialog()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
-        Panel2.SuspendLayout()
+        CType(PbxColor, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         PnlMain.SuspendLayout()
         CType(PbxMain, ComponentModel.ISupportInitialize).BeginInit()
@@ -121,66 +120,42 @@ Partial Class FrmMain
         ' 
         ' PnlTop
         ' 
-        PnlTop.Controls.Add(Panel2)
+        PnlTop.Controls.Add(PbxColor)
+        PnlTop.Controls.Add(BtnColor)
         PnlTop.Controls.Add(Panel1)
         PnlTop.Dock = DockStyle.Top
         PnlTop.Location = New Point(0, 24)
         PnlTop.Name = "PnlTop"
-        PnlTop.Size = New Size(800, 52)
+        PnlTop.Size = New Size(800, 48)
         PnlTop.TabIndex = 2
         ' 
-        ' Panel2
+        ' PbxColor
         ' 
-        Panel2.Controls.Add(RadioButton4)
-        Panel2.Controls.Add(RadioButton5)
-        Panel2.Controls.Add(RadioButton6)
-        Panel2.Location = New Point(336, 0)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(162, 52)
-        Panel2.TabIndex = 1
+        PbxColor.BackColor = Color.Black
+        PbxColor.BorderStyle = BorderStyle.Fixed3D
+        PbxColor.Location = New Point(2, 0)
+        PbxColor.Name = "PbxColor"
+        PbxColor.Size = New Size(48, 48)
+        PbxColor.TabIndex = 2
+        PbxColor.TabStop = False
         ' 
-        ' RadioButton4
+        ' BtnColor
         ' 
-        RadioButton4.Appearance = Appearance.Button
-        RadioButton4.BackColor = Color.Chocolate
-        RadioButton4.Location = New Point(108, 3)
-        RadioButton4.Name = "RadioButton4"
-        RadioButton4.Size = New Size(48, 48)
-        RadioButton4.TabIndex = 5
-        RadioButton4.TabStop = True
-        RadioButton4.Text = "マーカー"
-        RadioButton4.UseVisualStyleBackColor = False
-        ' 
-        ' RadioButton5
-        ' 
-        RadioButton5.Appearance = Appearance.Button
-        RadioButton5.Location = New Point(57, 2)
-        RadioButton5.Name = "RadioButton5"
-        RadioButton5.Size = New Size(48, 48)
-        RadioButton5.TabIndex = 4
-        RadioButton5.TabStop = True
-        RadioButton5.Text = "消しゴム"
-        RadioButton5.UseVisualStyleBackColor = True
-        ' 
-        ' RadioButton6
-        ' 
-        RadioButton6.Appearance = Appearance.Button
-        RadioButton6.Location = New Point(6, 2)
-        RadioButton6.Name = "RadioButton6"
-        RadioButton6.Size = New Size(48, 48)
-        RadioButton6.TabIndex = 3
-        RadioButton6.TabStop = True
-        RadioButton6.Text = "鉛筆"
-        RadioButton6.UseVisualStyleBackColor = True
+        BtnColor.Location = New Point(52, 0)
+        BtnColor.Name = "BtnColor"
+        BtnColor.Size = New Size(48, 48)
+        BtnColor.TabIndex = 1
+        BtnColor.Text = "色選択"
+        BtnColor.UseVisualStyleBackColor = True
         ' 
         ' Panel1
         ' 
         Panel1.Controls.Add(RadioButton3)
         Panel1.Controls.Add(RadioButton2)
         Panel1.Controls.Add(RadioButton1)
-        Panel1.Location = New Point(11, 3)
+        Panel1.Location = New Point(151, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(241, 48)
+        Panel1.Size = New Size(163, 48)
         Panel1.TabIndex = 0
         ' 
         ' RadioButton3
@@ -191,7 +166,7 @@ Partial Class FrmMain
         RadioButton3.Size = New Size(48, 48)
         RadioButton3.TabIndex = 2
         RadioButton3.TabStop = True
-        RadioButton3.Text = "マーカー"
+        RadioButton3.Text = "消しゴム"
         RadioButton3.UseVisualStyleBackColor = True
         ' 
         ' RadioButton2
@@ -202,7 +177,7 @@ Partial Class FrmMain
         RadioButton2.Size = New Size(48, 48)
         RadioButton2.TabIndex = 1
         RadioButton2.TabStop = True
-        RadioButton2.Text = "消しゴム"
+        RadioButton2.Text = "マーカー"
         RadioButton2.UseVisualStyleBackColor = True
         ' 
         ' RadioButton1
@@ -229,9 +204,9 @@ Partial Class FrmMain
         PnlMain.AutoScroll = True
         PnlMain.Controls.Add(PbxMain)
         PnlMain.Dock = DockStyle.Fill
-        PnlMain.Location = New Point(0, 76)
+        PnlMain.Location = New Point(0, 72)
         PnlMain.Name = "PnlMain"
-        PnlMain.Size = New Size(800, 331)
+        PnlMain.Size = New Size(800, 335)
         PnlMain.TabIndex = 4
         ' 
         ' PbxMain
@@ -272,7 +247,7 @@ Partial Class FrmMain
         StatusStrip1.ResumeLayout(False)
         StatusStrip1.PerformLayout()
         PnlTop.ResumeLayout(False)
-        Panel2.ResumeLayout(False)
+        CType(PbxColor, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         PnlMain.ResumeLayout(False)
         PnlMain.PerformLayout()
@@ -296,13 +271,12 @@ Partial Class FrmMain
     Friend WithEvents PbxMain As PictureBox
     Friend WithEvents DlgOpenFile As OpenFileDialog
     Friend WithEvents DlgSaveFile As SaveFileDialog
-    Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel1 As Panel
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents RadioButton3 As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton4 As RadioButton
-    Friend WithEvents RadioButton5 As RadioButton
-    Friend WithEvents RadioButton6 As RadioButton
+    Friend WithEvents BtnColor As Button
+    Friend WithEvents PbxColor As PictureBox
+    Friend WithEvents DlgColor As ColorDialog
 
 End Class
