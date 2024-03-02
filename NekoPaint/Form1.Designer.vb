@@ -33,6 +33,7 @@ Partial Class FrmMain
         LblRatio = New ToolStripStatusLabel()
         LblPictureSize = New ToolStripStatusLabel()
         PnlTop = New Panel()
+        TxtText = New TextBox()
         LblFont = New Label()
         BtnFont = New Button()
         PbxColor = New PictureBox()
@@ -49,7 +50,8 @@ Partial Class FrmMain
         DlgSaveFile = New SaveFileDialog()
         DlgColor = New ColorDialog()
         DlgFont = New FontDialog()
-        TxtText = New TextBox()
+        MenuHelp = New ToolStripMenuItem()
+        MenuVersion = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
@@ -61,7 +63,7 @@ Partial Class FrmMain
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {MenuFile})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {MenuFile, MenuHelp})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(800, 24)
@@ -78,24 +80,24 @@ Partial Class FrmMain
         ' MenuOpen
         ' 
         MenuOpen.Name = "MenuOpen"
-        MenuOpen.Size = New Size(177, 22)
+        MenuOpen.Size = New Size(180, 22)
         MenuOpen.Text = "ファイルを開く(&O)"
         ' 
         ' MenuSaveAs
         ' 
         MenuSaveAs.Name = "MenuSaveAs"
-        MenuSaveAs.Size = New Size(177, 22)
+        MenuSaveAs.Size = New Size(180, 22)
         MenuSaveAs.Text = "名前を付けて保存(&A)"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(174, 6)
+        ToolStripMenuItem1.Size = New Size(177, 6)
         ' 
         ' MenuExit
         ' 
         MenuExit.Name = "MenuExit"
-        MenuExit.Size = New Size(177, 22)
+        MenuExit.Size = New Size(180, 22)
         MenuExit.Text = "終了(&X)"
         ' 
         ' StatusStrip1
@@ -136,6 +138,14 @@ Partial Class FrmMain
         PnlTop.Name = "PnlTop"
         PnlTop.Size = New Size(800, 48)
         PnlTop.TabIndex = 2
+        ' 
+        ' TxtText
+        ' 
+        TxtText.Location = New Point(103, 23)
+        TxtText.Name = "TxtText"
+        TxtText.Size = New Size(105, 23)
+        TxtText.TabIndex = 6
+        TxtText.Text = "Hello World!"
         ' 
         ' LblFont
         ' 
@@ -270,13 +280,18 @@ Partial Class FrmMain
         ' 
         DlgFont.Font = New Font("ＭＳ ゴシック", 18F, FontStyle.Regular, GraphicsUnit.Point, CByte(128))
         ' 
-        ' TxtText
+        ' MenuHelp
         ' 
-        TxtText.Location = New Point(103, 23)
-        TxtText.Name = "TxtText"
-        TxtText.Size = New Size(105, 23)
-        TxtText.TabIndex = 6
-        TxtText.Text = "Hello World!"
+        MenuHelp.DropDownItems.AddRange(New ToolStripItem() {MenuVersion})
+        MenuHelp.Name = "MenuHelp"
+        MenuHelp.Size = New Size(65, 20)
+        MenuHelp.Text = "ヘルプ(&H)"
+        ' 
+        ' MenuVersion
+        ' 
+        MenuVersion.Name = "MenuVersion"
+        MenuVersion.Size = New Size(180, 22)
+        MenuVersion.Text = "バージョン情報(&A)"
         ' 
         ' FrmMain
         ' 
@@ -334,5 +349,7 @@ Partial Class FrmMain
     Friend WithEvents LblFont As Label
     Friend WithEvents BtnFont As Button
     Friend WithEvents TxtText As TextBox
+    Friend WithEvents MenuHelp As ToolStripMenuItem
+    Friend WithEvents MenuVersion As ToolStripMenuItem
 
 End Class

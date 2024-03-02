@@ -131,4 +131,7 @@ Public Class FrmMain
         End If
     End Sub
 
+    Private Sub MenuVersion_Click(sender As Object, e As EventArgs) Handles MenuVersion.Click
+        AboutBox.ShowDialog()
+    End Sub
 End Class
