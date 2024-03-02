@@ -1,4 +1,6 @@
-﻿Public Class FrmMain
+﻿Imports System.ComponentModel
+
+Public Class FrmMain
 
     Private ratio As Double = 1.0#      ' 画像の拡大率
     Private bmp As Bitmap = Nothing     ' 画像データ
@@ -69,4 +71,58 @@
         End If
     End Sub
 
+    Private Sub RadioButton4_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton4.CheckedChanged
+        Dim temp As RadioButton = CType(sender, RadioButton)
+        MsgBox(temp.BackColor.ToString)
+    End Sub
+
+    Private Sub PbxMain_Click(sender As Object, e As EventArgs) Handles PbxMain.Click
+        'Dim g As Graphics = Graphics.FromImage(bmp)
+        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
+        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
+        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
+        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
+        'objPen.Dispose()
+        'g.Dispose()
+
+        'PbxMain.Image = bmp
+    End Sub
+
+    Private Sub PbxMain_DragOver(sender As Object, e As DragEventArgs) Handles PbxMain.DragOver
+        'Dim g As Graphics = Graphics.FromImage(bmp)
+        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
+        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
+        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
+        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
+        'objPen.Dispose()
+        'g.Dispose()
+
+        'PbxMain.Image = bmp
+    End Sub
+
+    Private Sub PbxMain_MouseDown(sender As Object, e As MouseEventArgs) Handles PbxMain.MouseDown
+        'Dim g As Graphics = Graphics.FromImage(bmp)
+        'Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
+        'Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255), 2)
+        ''g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
+        'g.DrawLine(objPen, pos.X, pos.Y, pos.X + 1, pos.Y + 1)
+        'objPen.Dispose()
+        'g.Dispose()
+
+        'PbxMain.Image = bmp
+    End Sub
+
+    Private Sub PbxMain_MouseMove(sender As Object, e As MouseEventArgs) Handles PbxMain.MouseMove
+        If e.Button = MouseButtons.Left Then
+            Dim g As Graphics = Graphics.FromImage(bmp)
+            Dim pos As Point = PbxMain.PointToClient(System.Windows.Forms.Cursor.Position)
+            Dim objPen As Pen = New Pen(Color.FromArgb(255, 255, 255))
+            'g.DrawString("Hello World", Me.Font, Brushes.Blue, pos.X, pos.Y)
+            g.DrawLine(objPen, pos, pos)
+            objPen.Dispose()
+            g.Dispose()
+
+            PbxMain.Image = bmp
+        End If
+    End Sub
 End Class
