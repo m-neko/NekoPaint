@@ -37,6 +37,7 @@ Partial Class FrmMain
         PnlMain = New Panel()
         PbxMain = New PictureBox()
         DlgOpenFile = New OpenFileDialog()
+        DlgSaveFile = New SaveFileDialog()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlMain.SuspendLayout()
@@ -145,6 +146,12 @@ Partial Class FrmMain
         ' DlgOpenFile
         ' 
         DlgOpenFile.Filter = "画像ファイル|*.bmp;*.jpg;*.jpeg;*.png|すべてのファイル|*.*"
+        DlgOpenFile.Title = "ファイルを開く"
+        ' 
+        ' DlgSaveFile
+        ' 
+        DlgSaveFile.Filter = "PNG|*.png|BMP|*.bmp|JPEG|*.jpg;*.jpeg"
+        DlgSaveFile.Title = "名前を付けて保存"
         ' 
         ' FrmMain
         ' 
@@ -185,5 +192,6 @@ Partial Class FrmMain
     Friend WithEvents PnlMain As Panel
     Friend WithEvents PbxMain As PictureBox
     Friend WithEvents DlgOpenFile As OpenFileDialog
+    Friend WithEvents DlgSaveFile As SaveFileDialog
 
 End Class
