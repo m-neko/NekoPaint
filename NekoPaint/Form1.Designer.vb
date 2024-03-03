@@ -25,6 +25,7 @@ Partial Class FrmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         MenuStrip1 = New MenuStrip()
         MenuFile = New ToolStripMenuItem()
+        MenuNewDoc = New ToolStripMenuItem()
         MenuOpen = New ToolStripMenuItem()
         MenuSaveAs = New ToolStripMenuItem()
         ToolStripMenuItem1 = New ToolStripSeparator()
@@ -56,7 +57,6 @@ Partial Class FrmMain
         DlgFont = New FontDialog()
         DlgPrint = New PrintDialog()
         pdcImage = New Printing.PrintDocument()
-        MenuNewDoc = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
@@ -82,38 +82,44 @@ Partial Class FrmMain
         MenuFile.Size = New Size(67, 20)
         MenuFile.Text = "ファイル(&F)"
         ' 
+        ' MenuNewDoc
+        ' 
+        MenuNewDoc.Name = "MenuNewDoc"
+        MenuNewDoc.Size = New Size(177, 22)
+        MenuNewDoc.Text = "新規作成(&N)"
+        ' 
         ' MenuOpen
         ' 
         MenuOpen.Name = "MenuOpen"
-        MenuOpen.Size = New Size(180, 22)
+        MenuOpen.Size = New Size(177, 22)
         MenuOpen.Text = "ファイルを開く(&O)"
         ' 
         ' MenuSaveAs
         ' 
         MenuSaveAs.Name = "MenuSaveAs"
-        MenuSaveAs.Size = New Size(180, 22)
+        MenuSaveAs.Size = New Size(177, 22)
         MenuSaveAs.Text = "名前を付けて保存(&A)"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(177, 6)
+        ToolStripMenuItem1.Size = New Size(174, 6)
         ' 
         ' MenuPrint
         ' 
         MenuPrint.Name = "MenuPrint"
-        MenuPrint.Size = New Size(180, 22)
+        MenuPrint.Size = New Size(177, 22)
         MenuPrint.Text = "印刷(&P)"
         ' 
         ' ToolStripMenuItem2
         ' 
         ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        ToolStripMenuItem2.Size = New Size(177, 6)
+        ToolStripMenuItem2.Size = New Size(174, 6)
         ' 
         ' MenuExit
         ' 
         MenuExit.Name = "MenuExit"
-        MenuExit.Size = New Size(180, 22)
+        MenuExit.Size = New Size(177, 22)
         MenuExit.Text = "終了(&X)"
         ' 
         ' MenuHelp
@@ -187,11 +193,11 @@ Partial Class FrmMain
         ' 
         ' BtnFont
         ' 
+        BtnFont.Image = My.Resources.Resources.ico_font
         BtnFont.Location = New Point(213, 0)
         BtnFont.Name = "BtnFont"
         BtnFont.Size = New Size(48, 48)
         BtnFont.TabIndex = 4
-        BtnFont.Text = "フォント"
         BtnFont.UseVisualStyleBackColor = True
         ' 
         ' PbxColor
@@ -206,11 +212,11 @@ Partial Class FrmMain
         ' 
         ' BtnColor
         ' 
+        BtnColor.Image = My.Resources.Resources.ico_color
         BtnColor.Location = New Point(52, 0)
         BtnColor.Name = "BtnColor"
         BtnColor.Size = New Size(48, 48)
         BtnColor.TabIndex = 1
-        BtnColor.Text = "色選択"
         BtnColor.UseVisualStyleBackColor = True
         ' 
         ' Panel1
@@ -227,45 +233,45 @@ Partial Class FrmMain
         ' BtnText
         ' 
         BtnText.Appearance = Appearance.Button
+        BtnText.Image = My.Resources.Resources.ico_text
         BtnText.Location = New Point(148, 0)
         BtnText.Name = "BtnText"
         BtnText.Size = New Size(48, 48)
         BtnText.TabIndex = 3
         BtnText.TabStop = True
-        BtnText.Text = "文字列"
         BtnText.UseVisualStyleBackColor = True
         ' 
         ' BtnEraser
         ' 
         BtnEraser.Appearance = Appearance.Button
+        BtnEraser.Image = My.Resources.Resources.ico_eraser
         BtnEraser.Location = New Point(99, 0)
         BtnEraser.Name = "BtnEraser"
         BtnEraser.Size = New Size(48, 48)
         BtnEraser.TabIndex = 2
         BtnEraser.TabStop = True
-        BtnEraser.Text = "消しゴム"
         BtnEraser.UseVisualStyleBackColor = True
         ' 
         ' BtnMakerPen
         ' 
         BtnMakerPen.Appearance = Appearance.Button
+        BtnMakerPen.Image = My.Resources.Resources.ico_marker
         BtnMakerPen.Location = New Point(50, 0)
         BtnMakerPen.Name = "BtnMakerPen"
         BtnMakerPen.Size = New Size(48, 48)
         BtnMakerPen.TabIndex = 1
         BtnMakerPen.TabStop = True
-        BtnMakerPen.Text = "マーカー"
         BtnMakerPen.UseVisualStyleBackColor = True
         ' 
         ' BtnPencil
         ' 
         BtnPencil.Appearance = Appearance.Button
+        BtnPencil.Image = My.Resources.Resources.ico_pencil
         BtnPencil.Location = New Point(1, 0)
         BtnPencil.Name = "BtnPencil"
         BtnPencil.Size = New Size(48, 48)
         BtnPencil.TabIndex = 0
         BtnPencil.TabStop = True
-        BtnPencil.Text = "鉛筆"
         BtnPencil.UseVisualStyleBackColor = True
         ' 
         ' PnlBottom
@@ -316,12 +322,6 @@ Partial Class FrmMain
         ' pdcImage
         ' 
         pdcImage.DocumentName = "NekoPaintDocument"
-        ' 
-        ' MenuNewDoc
-        ' 
-        MenuNewDoc.Name = "MenuNewDoc"
-        MenuNewDoc.Size = New Size(180, 22)
-        MenuNewDoc.Text = "新規作成(&N)"
         ' 
         ' FrmMain
         ' 
