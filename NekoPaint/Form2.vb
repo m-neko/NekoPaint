@@ -11,7 +11,7 @@ Public Class FrmNewDoc
             Me.DialogResult = DialogResult.OK
             Me.Close()
         Else
-            MessageBox.Show("画像のサイズは数値のみで指定してください", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("画像のサイズを正しく入力してください", "入力エラー", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If
     End Sub
 
