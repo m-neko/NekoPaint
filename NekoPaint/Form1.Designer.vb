@@ -56,6 +56,7 @@ Partial Class FrmMain
         DlgFont = New FontDialog()
         DlgPrint = New PrintDialog()
         pdcImage = New Printing.PrintDocument()
+        MenuNewDoc = New ToolStripMenuItem()
         MenuStrip1.SuspendLayout()
         StatusStrip1.SuspendLayout()
         PnlTop.SuspendLayout()
@@ -76,7 +77,7 @@ Partial Class FrmMain
         ' 
         ' MenuFile
         ' 
-        MenuFile.DropDownItems.AddRange(New ToolStripItem() {MenuOpen, MenuSaveAs, ToolStripMenuItem1, MenuPrint, ToolStripMenuItem2, MenuExit})
+        MenuFile.DropDownItems.AddRange(New ToolStripItem() {MenuNewDoc, MenuOpen, MenuSaveAs, ToolStripMenuItem1, MenuPrint, ToolStripMenuItem2, MenuExit})
         MenuFile.Name = "MenuFile"
         MenuFile.Size = New Size(67, 20)
         MenuFile.Text = "ファイル(&F)"
@@ -84,35 +85,35 @@ Partial Class FrmMain
         ' MenuOpen
         ' 
         MenuOpen.Name = "MenuOpen"
-        MenuOpen.Size = New Size(177, 22)
+        MenuOpen.Size = New Size(180, 22)
         MenuOpen.Text = "ファイルを開く(&O)"
         ' 
         ' MenuSaveAs
         ' 
         MenuSaveAs.Name = "MenuSaveAs"
-        MenuSaveAs.Size = New Size(177, 22)
+        MenuSaveAs.Size = New Size(180, 22)
         MenuSaveAs.Text = "名前を付けて保存(&A)"
         ' 
         ' ToolStripMenuItem1
         ' 
         ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        ToolStripMenuItem1.Size = New Size(174, 6)
+        ToolStripMenuItem1.Size = New Size(177, 6)
         ' 
         ' MenuPrint
         ' 
         MenuPrint.Name = "MenuPrint"
-        MenuPrint.Size = New Size(177, 22)
+        MenuPrint.Size = New Size(180, 22)
         MenuPrint.Text = "印刷(&P)"
         ' 
         ' ToolStripMenuItem2
         ' 
         ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        ToolStripMenuItem2.Size = New Size(174, 6)
+        ToolStripMenuItem2.Size = New Size(177, 6)
         ' 
         ' MenuExit
         ' 
         MenuExit.Name = "MenuExit"
-        MenuExit.Size = New Size(177, 22)
+        MenuExit.Size = New Size(180, 22)
         MenuExit.Text = "終了(&X)"
         ' 
         ' MenuHelp
@@ -316,6 +317,12 @@ Partial Class FrmMain
         ' 
         pdcImage.DocumentName = "NekoPaintDocument"
         ' 
+        ' MenuNewDoc
+        ' 
+        MenuNewDoc.Name = "MenuNewDoc"
+        MenuNewDoc.Size = New Size(180, 22)
+        MenuNewDoc.Text = "新規作成(&N)"
+        ' 
         ' FrmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
@@ -378,5 +385,6 @@ Partial Class FrmMain
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents DlgPrint As PrintDialog
     Friend WithEvents pdcImage As Printing.PrintDocument
+    Friend WithEvents MenuNewDoc As ToolStripMenuItem
 
 End Class

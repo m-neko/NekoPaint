@@ -21,7 +21,9 @@ Public Class FrmMain
         PbxColor.BackColor = fcolor
 
         If Not bmp Is Nothing Then
-            Me.Text &= " - " & filePath
+            If filePath <> "" Then
+                Me.Text &= " - " & filePath
+            End If
             LblRatio.Text &= ratio.ToString("0.00")
             LblPictureSize.Text &= bmp.Width & " × " & bmp.Height
             MenuSaveAs.Enabled = True
@@ -154,4 +156,21 @@ Public Class FrmMain
         e.HasMorePages = False
     End Sub
 
+    Private Sub MenuNewDoc_Click(sender As Object, e As EventArgs) Handles MenuNewDoc.Click
+        If FrmNewDoc.ShowDialog() = DialogResult.OK Then
+            Try
+                Dim bmpWidth As Integer = CInt(FrmNewDoc.txtWidth.Text)
+                Dim bmpHeight As Integer = CInt(FrmNewDoc.txtHeight.Text)
+                bmp = New Bitmap(bmpWidth, bmpHeight)
+                filePath = ""
+                Dim g As Graphics = Graphics.FromImage(bmp)
+                g.FillRectangle(Brushes.White, 0, 0, bmpWidth, bmpHeight)
+                g.Dispose()
+            Catch ex As Exception
+                MessageBox.Show("新しい画像の生成に失敗しました", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            PbxMain.Image = bmp
+            UpdateFormData()
+        End If
+    End Sub
 End Class
